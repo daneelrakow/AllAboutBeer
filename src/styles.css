@@ -1,0 +1,23 @@
+html {
+  background-color: "#dedede";
+  font-family: 'Ibarra Real Nova', serif;
+
+}
+
+li {
+  color: "#474646";
+  list-style-type: none;
+  text-align: left;
+}
+
+header {
+  text-align: center;
+}
+
+header h1 {
+  color: "#523333";
+}
+
+footer {
+  text-align: center;
+}
