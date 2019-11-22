@@ -1,23 +1,54 @@
-html {
-  background-color: "#dedede";
+html, body {
+  background-color: white;
   font-family: 'Ibarra Real Nova', serif;
-
-}
-
-li {
-  color: "#474646";
-  list-style-type: none;
-  text-align: left;
+  margin: 0;
+  padding: 0;
 }
 
 header {
+  padding-top: 15px;
   text-align: center;
+  border-bottom: solid 2px black;
+  background-color: lightgray;
 }
 
 header h1 {
-  color: "#523333";
+  color: black;
 }
 
 footer {
   text-align: center;
+  border-top: solid 2px black;
+  background-color: lightgray;
+  padding-bottom: 20px;
+}
+
+p:hover {
+
+}
+main {
+  background: white;
+}
+main, main li {
+  text-align: center;
+}
+
+p a {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+}
+
+#randomdescription {
+  text-align: center;
+}
+
+.selectable:hover {
+  color: red;
 }

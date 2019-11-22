@@ -1,45 +1,140 @@
-//
-// $(document).ready(function() {
-//     $("#testButton").click(function(){
-//         console.log("button pressed!")
-//     });
-// });
-/*
- BREWERY DB DOCS
- /beer/:beerId/breweries lists brewery locations for a beerId
- /beer/:beerId/events Gets a listing of all events that a beer is at or has won awards at.
+const url = "https://sandbox-api.brewerydb.com/v2/"
+const key = OMITTED
+
+//gets a random beer
+async function getRandomBeer() {
+  var response = await fetch(url + "beer/random" + key)
+  let randomBeer = await response.json();
+  JSON.stringify(randomBeer);
+  updateRandomBeer(randomBeer);
+}
+
+//changes the beer to the more advanved api beer request
+async function updateRandomBeer(b) {
+  let id = b.data.id
+  console.log(id)
+  var ren = await fetch(url + "beer/" + id + "/" + key)
+  let c = await ren.json();
+  JSON.stringify(c)
+
+  console.log(c.data.name);
+  updateRandomBeerHTML(c);
+}
+
+//updates the html with the information from the api request
+function updateRandomBeerHTML(beer) {
+  console.log(beer);
+  let image = document.getElementById("randompicture");
+  let id = beer.data.id;
+  let name = document.getElementById("randombeername");
+  let abv = document.getElementById("randomabv");
+  let style = document.getElementById("randomstyle");
+  let category = document.getElementById("randomcategory");
+  let header = document.getElementById("descriptionheader");
+  let foodPairings = document.getElementById("randomfoodpairings");
+  let description = document.getElementById("randomdescription");
+  let isOrganic = document.getElementById("randomisorganic");
+  let isSold = document.getElementById("randomissold");
+  let anotherButton = document.getElementById("another");
+  let backButton = document.getElementById("gobackbutton");
+  name.innerHTML = beer.data.name
+  if (beer.data.abv) {
+    abv.innerHTML = "Alchohol by Volume: " + beer.data.abv + "%";
+  } else {
+    abv.innerHTML = "Alchohol by Volume Not Listed";
+  }
+
+  style.innerHTML = "Style: " + beer.data.style.shortName;
+  category.innerHTML = "Category: " + beer.data.style.category.name;
 
 
-*/
+  if (!beer.data.foodParings) {
+    foodPairings.innerHTML = "";
+  } else {
+    foodPairings.innerHTML = beer.data.foodParings;
+    description.innerHTML = beer.data.description;
+  }
 
-var url = "https://sandbox-api.brewerydb.com/v2/"
-var key = "/?key=6148072960b1d62f5fe9ce56b5bf28e9"
+  //checks if value is null or undefined
+  if (!beer.data.description) {
+    header.innerHTML = "";
+  } else {
+    header.innerHTML = "Description"
+    description.innerHTML = beer.data.description;
+  }
 
-getAllBeers();
+  if (beer.data.isOrganic){
+    if (beer.data.isOrganic == "Y"){
+      isOrganic.innerHTML = "This is an organic beer.";
+    }else if (beer.data.isOrganic == "N"){
+      isOrganic.innerHTML = "This is not an organic beer.";
+    }else {
+      console.log("There was an issue.")
+      isOrganic.innerHTML = "";
+    }
+  }else {
+    console.log("There was an issue.")
+    isOrganic.innerHTML = "";
+  }
 
+  if (beer.data.isRetired){
+    if (beer.data.isRetired == "Y"){
+      isSold.innerHTML = "This beer is no longer sold.";
+    }else if (beer.data.isRetired == "N"){
+      isSold.innerHTML = "This beer is currently on sale.";
+    }else {
+      console.log("There was an issue.")
+      isSold.innerHTML = "";
+    }
+  }else {
+    console.log("There was an issue.")
+    isSold.innerHTML = "";
+  }
 
+  anotherButton.innerHTML = "Another One";
+  backButton.innerHTML = "Go Back";
 
-async function getRandomBeer(){
-  var response = await fetch(url+"beer/random"+key)
-  randomBeer = JSON.stringify(await response.json());
-  console.log(JSON.parse(randomBeer)); //name also
-  // console.log("Retired? "+randomBeer.data.isRetired)
-  // console.log("Alchohol by volume: "+randomBeer.data.abv+"%");
-  // console.log("Style: "+randomBeer.data.style.shortName); //use .name for full name
-  // console.log("Description: "+randomBeer.data.style.description)
 
 }
 
+//resets all the html in the random beer part
+//add anything added above this this as well
+function clearRandomInformation() {
+  let name = document.getElementById("randombeername");
+  let abv = document.getElementById("randomabv");
+  let style = document.getElementById("randomstyle");
+  let category = document.getElementById("randomcategory");
+  let header = document.getElementById("descriptionheader");
+  let foodPairings = document.getElementById("randomfoodpairings");
+  let description = document.getElementById("randomdescription");
+  let isOrganic = document.getElementById("randomisorganic");
+  let isSold = document.getElementById("randomissold");
+  let anotherButton = document.getElementById("another");
+  let backButton = document.getElementById("gobackbutton");
+  name.innerHTML = "";
+  abv.innerHTML = "";
+  style.innerHTML = "";
+  category.innerHTML = "";
+  description.innerHTML = "";
+  header.innerHTML = "";
+  foodPairings.innerHTML = "";
+  description.innerHTML = "";
+  isOrganic.innerHTML = "";
+  isSold.innerHTML = "";
+  anotherButton.innerHTML = "";
+  backButton.innerHTML = "";
+}
 
-async function getBreweries(id){
+
+async function getBreweries(id) {
   var breweries;
-  var response = await fetch(url+"beer/"+id+"/breweries"+key)
+  var response = await fetch(url + "beer/" + id + "/breweries" + key)
   breweries = JSON.stringify(await response.json());
 }
 
-async function getAllBeers(){
-    var beers;
-    var response = await fetch(url+"beers"+key)
-    beers = JSON.stringify(await response.json());
-    console.log(JSON.parse(beers));
-  }
+async function getAllBeers() {
+  var beers;
+  var response = await fetch(url + "beers" + key)
+  beers = JSON.stringify(await response.json());
+  console.log(JSON.parse(beers));
+}

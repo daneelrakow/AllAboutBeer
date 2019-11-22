@@ -1,34 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>All About Beer</title>
-    <link rel="stylesheet" href="./src/styles.css">
-    <script src="src\script.js" type="text/javascript"></script>
-    <script src="src\jquery-3.4.1.min.js" type="javascript"></script>
-    <link href="https://fonts.googleapis.com/css?family=Ibarra+Real+Nova&display=swap" rel="stylesheet">
 
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>All About Beer</title>
+  <link rel="stylesheet" href="./src/styles.css">
+  <script src="src\script.js" type="text/javascript"></script>
+  <script src="src\jquery-3.4.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Ibarra+Real+Nova&display=swap" rel="stylesheet">
+  <script src="src\jquery.js" type="text/javascript"></script>
+</head>
 
-    <header>
-      <h1>All About Beer</h1>
-      <p>A website by Daneel Rakow</p>
-    </header>
-    <main>
-      <h3>Please select from the options below: </h3>
-      <nav>
-        <ul>
-          <li>Get a information about a random beer</li>
-          <li>Search beers by criteria</li>
-          <li>View events that a beer has won or been at.</li>
-        </ul>
-      </nav>
-    </main>
-    <footer>
-      <p>Website made by Daneel Rakow</p>
-      <p><a href="www.github.com/daneelrakow/allaboutbeer">Code</a></p>
+<body>
 
-    </footer>
-  </body>
+  <header>
+    <h1>All About Beer</h1>
+    <p>A website by Daneel Rakow</p>
+  </header>
+  <main>
+    <h3 id="randomhead" class="alternatehead">Get a random beer.</h3>
+    <h3 id="criteriahead" class="alternatehead">Search by Critera</h3>
+    <h3 id="specifichead" class="alternatehead">Search by Name</h3>
+    <h3 id="defaulthead" class="displaydefault">Please select from the options below: </h3>
+    <div id="options" class="displaydefault">
+      <p class="mainmenu selectable" id="randomselector"><a href="#">Get information about a random beer</a></p>
+      <p class="mainmenu selectable" id="criteriaselector"><a href="#">Search beers by criteria</a></p>
+      <p class="mainmenu selectable" id="specificselector"><a href="#">Search for a specific beer</a></p>
+    </div>
+
+    <div id="randombeer" class="randominformation alternate">
+      <img id="randompicture" class="randominformation alternate" src="" alt="">
+      <h2 id="randombeername" class="randominformation"></h2>
+      <h4 class="randominformation" id="descriptionheader">Description</h4>
+      <p id="randomdescription" class="randominformation"></p>
+      <h4 class="randominformation">Information</h4>
+
+      <p id="randomabv" class="randominformation"></p>
+      <p id="randomstyle" class="randominformation"></p>
+      <p id="randomcategory" class="randominformation"></p>
+      <p id="randomfoodpairings" class="randominformation"></p>
+      <p id="randomisorganic" class="randominformation"></p>
+      <p id="randomissold" class="randominformation"></p>
+
+        <h3 id = "another" class ="alternate randominformation  selectable"></h3>
+    </div>
+
+    <h3 id="gobackbutton" class = "selectable">Go Back</h3>
+  </main>
+  <footer>
+    <p id="aboutlink" class= "selectable"><a href="#">About Website</a></p>
+    <p><a href="https://github.com/daneelrakow/AllAboutBeer">Code</a></p>
+
+  </footer>
+</body>
+
 </html>
