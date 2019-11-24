@@ -26,6 +26,8 @@ $(document).ready(function() {
     $("#randombeer").show();
     $("#gobackbutton").show();
     $("#another").show();
+    $("#randomlearnmore").show();
+    clearRandomInformation();
     getRandomBeer();
 
   })
@@ -54,5 +56,12 @@ $(document).ready(function() {
 
     $("#another").hide();
     clearRandomInformation();
+  })
+
+  $("#randomlearnmore").click(function(){
+    updateAddAdditionalInfo();
+    $(".randomadditionalinfo").show();
+    $( this ).hide();
+
   })
 });

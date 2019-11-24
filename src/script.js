@@ -1,6 +1,8 @@
 const url = "https://sandbox-api.brewerydb.com/v2/"
-const key = OMITTED
+const key = config.MY_KEY;
 
+
+var theBeer;
 //gets a random beer
 async function getRandomBeer() {
   var response = await fetch(url + "beer/random" + key)
@@ -24,6 +26,7 @@ async function updateRandomBeer(b) {
 //updates the html with the information from the api request
 function updateRandomBeerHTML(beer) {
   console.log(beer);
+  theBeer = beer;
   let image = document.getElementById("randompicture");
   let id = beer.data.id;
   let name = document.getElementById("randombeername");
@@ -37,16 +40,25 @@ function updateRandomBeerHTML(beer) {
   let isSold = document.getElementById("randomissold");
   let anotherButton = document.getElementById("another");
   let backButton = document.getElementById("gobackbutton");
-  name.innerHTML = beer.data.name
+  let learnMore = document.getElementById("randomlearnmore")
+  if (beer.data.name){
+    name.innerHTML = beer.data.name
+  }else {
+    name.innerHTML = "There was an error. Please click \"Another\" or \"Go Back\""
+  }
+
+
+
+
   if (beer.data.abv) {
     abv.innerHTML = "Alchohol by Volume: " + beer.data.abv + "%";
   } else {
-    abv.innerHTML = "Alchohol by Volume Not Listed";
+    abv.innerHTML = ""
   }
 
   style.innerHTML = "Style: " + beer.data.style.shortName;
   category.innerHTML = "Category: " + beer.data.style.category.name;
-
+  learnMore.innerHTML = "Click here to learn more about this category or style."
 
   if (!beer.data.foodParings) {
     foodPairings.innerHTML = "";
@@ -66,8 +78,10 @@ function updateRandomBeerHTML(beer) {
   if (beer.data.isOrganic){
     if (beer.data.isOrganic == "Y"){
       isOrganic.innerHTML = "This is an organic beer.";
+      isOrganic.style.color = "green"
     }else if (beer.data.isOrganic == "N"){
       isOrganic.innerHTML = "This is not an organic beer.";
+      isOrganic.style.color = "red"
     }else {
       console.log("There was an issue.")
       isOrganic.innerHTML = "";
@@ -80,8 +94,10 @@ function updateRandomBeerHTML(beer) {
   if (beer.data.isRetired){
     if (beer.data.isRetired == "Y"){
       isSold.innerHTML = "This beer is no longer sold.";
+      isSold.style.color = "red"
     }else if (beer.data.isRetired == "N"){
       isSold.innerHTML = "This beer is currently on sale.";
+      isSold.style.color = "green"
     }else {
       console.log("There was an issue.")
       isSold.innerHTML = "";
@@ -111,6 +127,7 @@ function clearRandomInformation() {
   let isSold = document.getElementById("randomissold");
   let anotherButton = document.getElementById("another");
   let backButton = document.getElementById("gobackbutton");
+  var additionalInfo = document.getElementById("randomadditionalinfo");
   name.innerHTML = "";
   abv.innerHTML = "";
   style.innerHTML = "";
@@ -123,6 +140,8 @@ function clearRandomInformation() {
   isSold.innerHTML = "";
   anotherButton.innerHTML = "";
   backButton.innerHTML = "";
+  additionalInfo.innerHTML = "";
+
 }
 
 
@@ -137,4 +156,9 @@ async function getAllBeers() {
   var response = await fetch(url + "beers" + key)
   beers = JSON.stringify(await response.json());
   console.log(JSON.parse(beers));
+}
+
+function updateAddAdditionalInfo(){
+  var additionalInfo = document.getElementById("randomadditionalinfo");
+  additionalInfo.innerHTML = theBeer.data.style.description;
 }
