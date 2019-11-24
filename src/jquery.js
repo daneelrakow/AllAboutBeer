@@ -5,7 +5,7 @@ $(document).ready(function() {
   $("#gobackbutton").hide();
   $(".alternate").hide();
   $("#another").hide();
-
+  $('#aboutwebsite').hide();
 //shows the stuff for the random beer selector when random beer is clicked, also hides everthing else
   $("#randomselector").click(function() {
     $("#options").hide();
@@ -15,6 +15,7 @@ $(document).ready(function() {
     $("#gobackbutton").show();
     $("#another").show();
     getRandomBeer();
+    $('#aboutwebsite').hide();
 
   })
 
@@ -27,6 +28,9 @@ $(document).ready(function() {
     $("#gobackbutton").show();
     $("#another").show();
     $("#randomlearnmore").show();
+    $("#gobackbutton").show();
+    $('#aboutwebsite').hide();
+
     clearRandomInformation();
     getRandomBeer();
 
@@ -38,6 +42,8 @@ $(document).ready(function() {
     $("#criteriahead").show();
     $("#another").hide();
     $("#gobackbutton").show();
+    $('#aboutwebsite').hide();
+
   })
 
   $("#specificselector").click(function() {
@@ -46,6 +52,8 @@ $(document).ready(function() {
     $("#specifichead").show();
     $("#another").hide();
     $("#gobackbutton").show();
+    $('#aboutwebsite').hide();
+
   })
 
   $("#gobackbutton").click(function() {
@@ -53,14 +61,32 @@ $(document).ready(function() {
     $(".displaydefault").show()
     $(".alternate").hide();
     $(this).hide();
-
+    $("#aboutwebsite").show();
+    $("#content").show();
     $("#another").hide();
     clearRandomInformation();
+    $("#gobackbutton").show();
+    $('#aboutwebsite').hide();
+    $('#aboutlink').show();
+
+
   })
 
   $("#randomlearnmore").click(function(){
     updateAddAdditionalInfo();
     $(".randomadditionalinfo").show();
+    $( this ).hide();
+    $("#gobackbutton").show();
+    $('#aboutwebsite').hide();
+
+  })
+
+  $("#aboutlink").click(function(){
+    $("#content").hide();
+
+    $("#AboutWebsite").show();
+    $("#gobackbutton").show();
+
     $( this ).hide();
 
   })
