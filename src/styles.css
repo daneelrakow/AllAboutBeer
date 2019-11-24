@@ -56,3 +56,11 @@ a:visited {
 #anotherButton {
   border: solid 2px black;
 }
+
+#gobackbutton {
+  text-align: center;
+}
+
+#aboutwebsite {
+  text-align: center;
+}
