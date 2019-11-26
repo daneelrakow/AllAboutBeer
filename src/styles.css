@@ -64,3 +64,17 @@ a:visited {
 #aboutwebsite {
   text-align: center;
 }
+
+#ageverify {
+  text-align: center;
+  column-count: 1;
+}
+
+#ageform {
+  padding-bottom: 20px;
+}
+
+.formitem {
+  display: inline-table;
+  margin-top: 8px;
+}

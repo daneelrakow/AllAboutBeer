@@ -23,7 +23,27 @@
     <h1>All About Beer</h1>
     <p>A website by Daneel Rakow</p>
   </header>
-  <main id = "content">
+  <div id = "ageverify" class = "container">
+    <h3>We'll need some age verification first.</h3>
+    <p>You must be over 21 to enter this website.</p>
+        <p><i>Please enter your birthdate below.</i></p>
+    <form id = "ageform">
+      <label for="birthmonth" class = "formitem">Month: </label>
+      <input type="number" name="birthmonth" min="1" max="12" class = "formitem">
+      <br>
+      <label for="birthdate" class = "formitem">Day: </label>
+      <input type="number" name="birthdate" min="1" max="31" class = "formitem">
+      <br>
+      <label for="birthyear" class = "formitem">Year: </label >
+      <input type="number" name="birthyear" min="1900" max="2020" class = "formitem">
+<br>
+      <button id = "submitbutton" class = "formitem">Submit</button>
+
+    </form>
+  </div>
+
+
+  <main id="content">
     <h3 id="randomhead" class="alternatehead">Get a random beer.</h3>
 
     <h3 id="criteriahead" class="alternatehead">Search by Critera</h3>
@@ -54,13 +74,8 @@
       <h3 id="another" class="alternate randominformation  selectable"></h3>
     </div>
 
-
-
-
-
-
   </main>
-  <div id = "aboutwebsite">
+  <div id="aboutwebsite">
     <h3>About Website</h3>
     <p>About this website</p>
   </div>
