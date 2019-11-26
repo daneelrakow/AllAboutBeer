@@ -41,9 +41,9 @@ function updateRandomBeerHTML(beer) {
   let anotherButton = document.getElementById("another");
   let backButton = document.getElementById("gobackbutton");
   let learnMore = document.getElementById("randomlearnmore")
-  if (beer.data.name){
+  if (beer.data.name) {
     name.innerHTML = beer.data.name
-  }else {
+  } else {
     name.innerHTML = "There was an error. Please click \"Another\" or \"Go Back\""
   }
 
@@ -75,34 +75,34 @@ function updateRandomBeerHTML(beer) {
     description.innerHTML = beer.data.description;
   }
 
-  if (beer.data.isOrganic){
-    if (beer.data.isOrganic == "Y"){
+  if (beer.data.isOrganic) {
+    if (beer.data.isOrganic == "Y") {
       isOrganic.innerHTML = "This is an organic beer.";
       isOrganic.style.color = "green"
-    }else if (beer.data.isOrganic == "N"){
+    } else if (beer.data.isOrganic == "N") {
       isOrganic.innerHTML = "This is not an organic beer.";
       isOrganic.style.color = "red"
-    }else {
+    } else {
       console.log("There was an issue.")
       isOrganic.innerHTML = "";
     }
-  }else {
+  } else {
     console.log("There was an issue.")
     isOrganic.innerHTML = "";
   }
 
-  if (beer.data.isRetired){
-    if (beer.data.isRetired == "Y"){
+  if (beer.data.isRetired) {
+    if (beer.data.isRetired == "Y") {
       isSold.innerHTML = "This beer is no longer sold.";
       isSold.style.color = "red"
-    }else if (beer.data.isRetired == "N"){
+    } else if (beer.data.isRetired == "N") {
       isSold.innerHTML = "This beer is currently on sale.";
       isSold.style.color = "green"
-    }else {
+    } else {
       console.log("There was an issue.")
       isSold.innerHTML = "";
     }
-  }else {
+  } else {
     console.log("There was an issue.")
     isSold.innerHTML = "";
   }
@@ -158,7 +158,7 @@ async function getAllBeers() {
   console.log(JSON.parse(beers));
 }
 
-function updateAddAdditionalInfo(){
+function updateAddAdditionalInfo() {
   var additionalInfo = document.getElementById("randomadditionalinfo");
   additionalInfo.innerHTML = theBeer.data.style.description;
 }

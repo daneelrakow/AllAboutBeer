@@ -6,6 +6,28 @@ $(document).ready(function() {
   $(".alternate").hide();
   $("#another").hide();
   $('#aboutwebsite').hide();
+  $('#content').hide();
+  $('#accessdenied').hide();
+
+  $("#submitbutton").click(function(){
+
+    let monthVal = $("#bmonth").val();
+    let dateVal = $("#bdate").val();
+    let yearVal = $("#byear").val();
+
+    //verifies that all fields are filled out
+    if (!monthVal || !dateVal|| !yearVal){
+      alert("Please enter all information.");
+    }
+
+    var todaysDate = new Date();
+
+    var targetYear = todaysDate.getFullYear() - 21;
+    console.log(targetYear);
+
+//TODO finish this shit
+  })
+
 //shows the stuff for the random beer selector when random beer is clicked, also hides everthing else
   $("#randomselector").click(function() {
     $("#options").hide();
@@ -19,7 +41,7 @@ $(document).ready(function() {
 
   })
 
-//the another button on the random page
+  //the another button on the random page
   $("#another").click(function() {
     $("#options").hide();
     $("#defaulthead").hide();
@@ -72,22 +94,25 @@ $(document).ready(function() {
 
   })
 
-  $("#randomlearnmore").click(function(){
+  $("#randomlearnmore").click(function() {
     updateAddAdditionalInfo();
     $(".randomadditionalinfo").show();
-    $( this ).hide();
+    $(this).hide();
     $("#gobackbutton").show();
     $('#aboutwebsite').hide();
 
   })
 
-  $("#aboutlink").click(function(){
+  $("#aboutlink").click(function() {
     $("#content").hide();
 
     $("#AboutWebsite").show();
     $("#gobackbutton").show();
 
-    $( this ).hide();
+    $(this).hide();
 
   })
+
+
+
 });
