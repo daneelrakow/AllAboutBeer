@@ -78,3 +78,12 @@ a:visited {
   display: inline-table;
   margin-top: 8px;
 }
+
+#accessdenied {
+  text-align: center;
+  color: red;
+}
+
+#userlist {
+  text-align: center;
+}

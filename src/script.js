@@ -1,14 +1,18 @@
 const url = "https://sandbox-api.brewerydb.com/v2/"
 const key = config.MY_KEY;
 
+var userList = {
 
+}
 var theBeer;
 //gets a random beer
 async function getRandomBeer() {
+  console.log("getRandomBeer() has been called.")
   var response = await fetch(url + "beer/random" + key)
   let randomBeer = await response.json();
   JSON.stringify(randomBeer);
   updateRandomBeer(randomBeer);
+  console.log("getRandomBeer() has been completed.")
 }
 
 //changes the beer to the more advanved api beer request
@@ -40,7 +44,8 @@ function updateRandomBeerHTML(beer) {
   let isSold = document.getElementById("randomissold");
   let anotherButton = document.getElementById("another");
   let backButton = document.getElementById("gobackbutton");
-  let learnMore = document.getElementById("randomlearnmore")
+  let learnMore = document.getElementById("randomlearnmore");
+  let addToList = document.getElementById("addtolist");
   if (beer.data.name) {
     name.innerHTML = beer.data.name
   } else {
@@ -106,7 +111,7 @@ function updateRandomBeerHTML(beer) {
     console.log("There was an issue.")
     isSold.innerHTML = "";
   }
-
+  addToList.innerHTML = "Add to my list";
   anotherButton.innerHTML = "Another One";
   backButton.innerHTML = "Go Back";
 
@@ -128,6 +133,7 @@ function clearRandomInformation() {
   let anotherButton = document.getElementById("another");
   let backButton = document.getElementById("gobackbutton");
   var additionalInfo = document.getElementById("randomadditionalinfo");
+    let addToList = document.getElementById("addtolist");
   name.innerHTML = "";
   abv.innerHTML = "";
   style.innerHTML = "";
@@ -141,6 +147,7 @@ function clearRandomInformation() {
   anotherButton.innerHTML = "";
   backButton.innerHTML = "";
   additionalInfo.innerHTML = "";
+    addToList.innerHTML = "";
 
 }
 
@@ -161,4 +168,24 @@ async function getAllBeers() {
 function updateAddAdditionalInfo() {
   var additionalInfo = document.getElementById("randomadditionalinfo");
   additionalInfo.innerHTML = theBeer.data.style.description;
+}
+
+function addToList(){
+  console.log("Adding beer to user list...")
+  userList[theBeer.data.id] = theBeer;
+  console.log(userList);
+  alert(theBeer.data.name+" was successfully added to your list.")
+}
+
+function displayUserList(){
+  console.log("test");
+  var parent = document.getElementById("userlist");
+
+  Object.keys(userList).forEach(function(key){
+    console.log(key, userList[key].data.name);
+    var element = document.createElement('p');
+    var name = document.createTextNode(userList[key].data.name);
+    element.appendChild(name);
+    parent.appendChild(element);
+  })
 }

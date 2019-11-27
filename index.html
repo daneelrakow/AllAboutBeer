@@ -39,7 +39,7 @@
       <input type="number" name="birthyear" id="byear" class="formitem">
       <!-- TODO add validation -->
       <br>
-      <button id="submitbutton" class="formitem">Submit</button>
+      <button id="submitbutton" type = "button" class="formitem">Submit</button>
 
     </form>
   </div>
@@ -50,14 +50,10 @@
 
   <main id="content">
     <h3 id="randomhead" class="alternatehead">Get a random beer.</h3>
-
-    <h3 id="criteriahead" class="alternatehead">Search by Critera</h3>
-    <h3 id="specifichead" class="alternatehead">Search by Name</h3>
     <h3 id="defaulthead" class="displaydefault">Please select from the options below: </h3>
     <div id="options" class="displaydefault">
       <p class="mainmenu selectable" id="randomselector">Get information about a random beer</p>
-      <p class="mainmenu selectable" id="criteriaselector">Search beers by criteria</p>
-      <p class="mainmenu selectable" id="specificselector">Search for a specific beer</p>
+      <p class = "mainmenu selectable" id = "viewlistselector">View my list</p>
     </div>
 
     <div id="randombeer" class="randominformation alternate">
@@ -75,11 +71,16 @@
       <p id="randomfoodpairings" class="randominformation"></p>
       <p id="randomisorganic" class="randominformation"></p>
       <p id="randomissold" class="randominformation"></p>
-
+      <h3 id="addtolist" class="alternate randominformation  selectable"></h3>
       <h3 id="another" class="alternate randominformation  selectable"></h3>
     </div>
 
+
+
   </main>
+  <div id = "userlist">
+    <h3>Your List</h3>
+  </div>
   <div id="aboutwebsite">
     <h3>About Website</h3>
     <p>About this website</p>
