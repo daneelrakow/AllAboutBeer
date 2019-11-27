@@ -1,11 +1,13 @@
-const url = "https://sandbox-api.brewerydb.com/v2/"
+const url = "https://sandbox-api.brewerydb.com/v2/" //base url for brewerydb api
 const key = config.MY_KEY;
 
-var userList = {
+let userList = {
 
 }
-var theBeer;
-//gets a random beer
+let theBeer;
+
+
+//This function calls BreweryDB and fetches a random beer.
 async function getRandomBeer() {
   console.log("getRandomBeer() has been called.")
   var response = await fetch(url + "beer/random" + key)
@@ -188,4 +190,12 @@ function displayUserList(){
     element.appendChild(name);
     parent.appendChild(element);
   })
+
+  let backButton = document.getElementById("gobackbutton");
+  backButton.innerHTML = "Go Back"
+}
+
+function clearUserListDisplay(){
+  var parent = document.getElementById("userlist");
+  parent.innerHTML = "";
 }

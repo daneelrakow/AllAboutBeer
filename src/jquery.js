@@ -90,6 +90,7 @@ $(document).ready(function() {
     $("#content").show();
     $("#another").hide();
     clearRandomInformation();
+    clearUserListDisplay();
     $("#gobackbutton").show();
     $('#aboutwebsite').hide();
     $('#aboutlink').show();
@@ -118,10 +119,11 @@ $(document).ready(function() {
   })
 
   $("#viewlistselector").click(function() {
+        $("#gobackbutton").show();
     $(".mainmenu").hide();
     $("#defaulthead").hide();
     $("#userlist").show();
-    $("#gobackbutton").show();
+
     displayUserList();
 
   })
