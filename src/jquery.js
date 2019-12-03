@@ -119,10 +119,11 @@ $(document).ready(function() {
   })
 
   $("#viewlistselector").click(function() {
-        $("#gobackbutton").show();
+    $("#userlist").show();
+    $("#listBeer").show();
+    $("#gobackbutton").show();
     $(".mainmenu").hide();
     $("#defaulthead").hide();
-    $("#userlist").show();
 
     displayUserList();
 

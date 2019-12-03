@@ -20,12 +20,12 @@ async function getRandomBeer() {
 //changes the beer to the more advanved api beer request
 async function updateRandomBeer(b) {
   let id = b.data.id
-  console.log(id)
+  console.log("Beer ID: "+id)
   var ren = await fetch(url + "beer/" + id + "/" + key)
   let c = await ren.json();
   JSON.stringify(c)
 
-  console.log(c.data.name);
+  console.log("Beer name: "+c.data.name);
   updateRandomBeerHTML(c);
 }
 
@@ -180,8 +180,8 @@ function addToList(){
 }
 
 function displayUserList(){
-  console.log("test");
-  var parent = document.getElementById("userlist");
+
+  var parent = document.getElementById("listBeer");
 
   Object.keys(userList).forEach(function(key){
     console.log(key, userList[key].data.name);
@@ -196,6 +196,35 @@ function displayUserList(){
 }
 
 function clearUserListDisplay(){
-  var parent = document.getElementById("userlist");
+  var parent = document.getElementById("listBeer");
   parent.innerHTML = "";
+}
+
+function download(filename, text) {
+  var element = document.createElement('a');
+
+  let header = "                             Your List \n---------------------------------------------------------------\n"
+  let usersList = header+"";
+
+  Object.keys(userList).forEach(function(key){
+    console.log(key, userList[key].data.name);
+    usersList = usersList+"\n"+(userList[key].data.name);
+  });
+
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(usersList));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
+function createAndDownloadFile(){
+  console.log("createAndDownloadFile() has been called.");
+  console.log("Downloading...");
+  download("Your_List.txt", "info here");
+  console.log("File downloaded.");
 }
