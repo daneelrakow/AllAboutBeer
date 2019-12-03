@@ -23,75 +23,75 @@
 
 
 
-    <header>
-      <h1>All About Beer</h1>
-      <p>A website by Daneel Rakow</p>
-    </header>
-    <div id="ageverify" class="container">
-      <h3>We'll need some age verification first.</h3>
-      <p>You must be over 21 to enter this website.</p>
-      <p><i>Please enter your birthdate below.</i></p>
-      <p>Please enter date in full format, XX-XX-XXXX</p>
-      <form id="ageform">
-        <label for="birthmonth" class="formitem">Month: </label>
-        <input type="number" name="birthmonth" id="bmonth" class="formitem">
-        <br>
-        <label for="birthdate" class="formitem">Day: </label>
-        <input type="number" name="birthdate" id="bdate" class="formitem">
-        <br>
-        <label for="birthyear" class="formitem">Year: </label>
-        <input type="number" name="birthyear" id="byear" class="formitem">
-        <!-- TODO add validation -->
-        <br>
-        <button id="submitbutton" type="button" class="formitem">Submit</button>
+  <header>
+    <h1>All About Beer</h1>
+    <p>A website by Daneel Rakow</p>
+  </header>
+  <div id="ageverify" class="container">
+    <h3>We'll need some age verification first.</h3>
+    <p>You must be over 21 to enter this website.</p>
+    <p><i>Please enter your birthdate below.</i></p>
+    <p>Please enter date in full format, XX-XX-XXXX</p>
+    <form id="ageform">
+      <label for="birthmonth" class="formitem">Month: </label>
+      <input type="number" name="birthmonth" id="bmonth" class="formitem">
+      <br>
+      <label for="birthdate" class="formitem">Day: </label>
+      <input type="number" name="birthdate" id="bdate" class="formitem">
+      <br>
+      <label for="birthyear" class="formitem">Year: </label>
+      <input type="number" name="birthyear" id="byear" class="formitem">
+      <!-- TODO add validation -->
+      <br>
+      <button id="submitbutton" type="button" class="formitem">Submit</button>
 
-      </form>
+    </form>
+  </div>
+  <div id="accessdenied">
+    <h1>Access is denied.</h1>
+  </div>
+
+
+  <main id="content">
+    <h3 id="randomhead" class="alternatehead">Get a random beer.</h3>
+    <h3 id="defaulthead" class="displaydefault">Please select from the options below: </h3>
+    <div id="options" class="displaydefault">
+      <p class="mainmenu selectable" id="randomselector">Get information about a random beer</p>
+      <p class="mainmenu selectable" id="viewlistselector">View my list</p>
     </div>
-    <div id="accessdenied">
-      <h1>Access is denied.</h1>
+
+    <div id="randombeer" class="randominformation alternate">
+      <img id="randompicture" class="randominformation alternate" src="" alt="">
+      <h2 id="randombeername" class="randominformation"></h2>
+      <h4 class="randominformation" id="descriptionheader">Description</h4>
+      <p id="randomdescription" class="randominformation"></p>
+      <h4 class="randominformation">Information</h4>
+
+      <p id="randomabv" class="randominformation"></p>
+      <p id="randomstyle" class="randominformation"></p>
+      <p id="randomcategory" class="randominformation"></p>
+      <p id="randomlearnmore" class="randominformation selectable"></p>
+      <p id="randomadditionalinfo" class="randominformation"></p>
+      <p id="randomfoodpairings" class="randominformation"></p>
+      <p id="randomisorganic" class="randominformation"></p>
+      <p id="randomissold" class="randominformation"></p>
+      <h3 id="addtolist" class="alternate randominformation  selectable"></h3>
+      <h3 id="another" class="alternate randominformation  selectable"></h3>
     </div>
 
-
-    <main id="content">
-      <h3 id="randomhead" class="alternatehead">Get a random beer.</h3>
-      <h3 id="defaulthead" class="displaydefault">Please select from the options below: </h3>
-      <div id="options" class="displaydefault">
-        <p class="mainmenu selectable" id="randomselector">Get information about a random beer</p>
-        <p class="mainmenu selectable" id="viewlistselector">View my list</p>
+    <div id="userlist">
+      <h3>Your List</h3>
+      <div id="listBeer">
       </div>
+      <button type="button" name="button" onclick="createAndDownloadFile()">Export my List</button>
+    </div>
+    <div id="aboutwebsite">
+      <h3>About Website</h3>
+      <p>About this website</p>
+    </div>
+    <h3 id="gobackbutton" class="selectable">Go Back</h3>
 
-      <div id="randombeer" class="randominformation alternate">
-        <img id="randompicture" class="randominformation alternate" src="" alt="">
-        <h2 id="randombeername" class="randominformation"></h2>
-        <h4 class="randominformation" id="descriptionheader">Description</h4>
-        <p id="randomdescription" class="randominformation"></p>
-        <h4 class="randominformation">Information</h4>
-
-        <p id="randomabv" class="randominformation"></p>
-        <p id="randomstyle" class="randominformation"></p>
-        <p id="randomcategory" class="randominformation"></p>
-        <p id="randomlearnmore" class="randominformation selectable"></p>
-        <p id="randomadditionalinfo" class="randominformation"></p>
-        <p id="randomfoodpairings" class="randominformation"></p>
-        <p id="randomisorganic" class="randominformation"></p>
-        <p id="randomissold" class="randominformation"></p>
-        <h3 id="addtolist" class="alternate randominformation  selectable"></h3>
-        <h3 id="another" class="alternate randominformation  selectable"></h3>
-      </div>
-
-      <div id="userlist">
-        <h3>Your List</h3>
-        <div id = "listBeer">
-        </div>
-        <button type="button" name="button" onclick="createAndDownloadFile()">Export my List</button>
-      </div>
-      <div id="aboutwebsite">
-        <h3>About Website</h3>
-        <p>About this website</p>
-      </div>
-      <h3 id="gobackbutton" class="selectable">Go Back</h3>
-
-    </main>
+  </main>
 
   <footer>
     <p id="aboutlink" class="selectable">About Website</p>
