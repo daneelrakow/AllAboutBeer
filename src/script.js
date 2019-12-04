@@ -1,16 +1,31 @@
+/*
+TODO Refactor Code
+TODO Change all P "buttons" to actual buttons
+  Go back
+  Another One
+  etc...
+TODO Docuement
+TODO fix age verification
+TODO footer css ask Austin
+TODO implement about website page and go back button
+TODO readme page
+TODO refactor getRandomBeer and updateRandomBeer into one function
+TODO fix go back button on main page
+*/
+
+
+
 const url = "https://sandbox-api.brewerydb.com/v2/" //base url for brewerydb api
 const key = config.MY_KEY;
 
-let userList = {
-
-}
-let theBeer;
-
+let userList = {} //list of all beers user adds to list
+let theBeer; // global variable which store the current random beer
 
 //This function calls BreweryDB and fetches a random beer.
+
 async function getRandomBeer() {
   console.log("getRandomBeer() has been called.")
-  var response = await fetch(url + "beer/random" + key)
+  let response = await fetch(url + "beer/random" + key)
   let randomBeer = await response.json();
   JSON.stringify(randomBeer);
   updateRandomBeer(randomBeer);
@@ -21,7 +36,7 @@ async function getRandomBeer() {
 async function updateRandomBeer(b) {
   let id = b.data.id
   console.log("Beer ID: "+id)
-  var ren = await fetch(url + "beer/" + id + "/" + key)
+  let ren = await fetch(url + "beer/" + id + "/" + key)
   let c = await ren.json();
   JSON.stringify(c)
 
@@ -33,6 +48,7 @@ async function updateRandomBeer(b) {
 function updateRandomBeerHTML(beer) {
   console.log(beer);
   theBeer = beer;
+
   let image = document.getElementById("randompicture");
   let id = beer.data.id;
   let name = document.getElementById("randombeername");
@@ -48,14 +64,16 @@ function updateRandomBeerHTML(beer) {
   let backButton = document.getElementById("gobackbutton");
   let learnMore = document.getElementById("randomlearnmore");
   let addToList = document.getElementById("addtolist");
+
+  addToList.innerHTML = "Add to my list";
+  anotherButton.innerHTML = "Another One";
+  // backButton.innerHTML = "Go Back";
+
   if (beer.data.name) {
     name.innerHTML = beer.data.name
   } else {
     name.innerHTML = "There was an error. Please click \"Another\" or \"Go Back\""
   }
-
-
-
 
   if (beer.data.abv) {
     abv.innerHTML = "Alchohol by Volume: " + beer.data.abv + "%";
@@ -113,10 +131,6 @@ function updateRandomBeerHTML(beer) {
     console.log("There was an issue.")
     isSold.innerHTML = "";
   }
-  addToList.innerHTML = "Add to my list";
-  anotherButton.innerHTML = "Another One";
-  backButton.innerHTML = "Go Back";
-
 
 }
 
@@ -134,7 +148,7 @@ function clearRandomInformation() {
   let isSold = document.getElementById("randomissold");
   let anotherButton = document.getElementById("another");
   let backButton = document.getElementById("gobackbutton");
-  var additionalInfo = document.getElementById("randomadditionalinfo");
+  let additionalInfo = document.getElementById("randomadditionalinfo");
     let addToList = document.getElementById("addtolist");
   name.innerHTML = "";
   abv.innerHTML = "";
@@ -147,24 +161,9 @@ function clearRandomInformation() {
   isOrganic.innerHTML = "";
   isSold.innerHTML = "";
   anotherButton.innerHTML = "";
-  backButton.innerHTML = "";
+  // backButton.innerHTML = "";
   additionalInfo.innerHTML = "";
-    addToList.innerHTML = "";
-
-}
-
-
-async function getBreweries(id) {
-  var breweries;
-  var response = await fetch(url + "beer/" + id + "/breweries" + key)
-  breweries = JSON.stringify(await response.json());
-}
-
-async function getAllBeers() {
-  var beers;
-  var response = await fetch(url + "beers" + key)
-  beers = JSON.stringify(await response.json());
-  console.log(JSON.parse(beers));
+  addToList.innerHTML = "";
 }
 
 function updateAddAdditionalInfo() {
@@ -180,13 +179,12 @@ function addToList(){
 }
 
 function displayUserList(){
-
-  var parent = document.getElementById("listBeer");
+  let parent = document.getElementById("listBeer");
 
   Object.keys(userList).forEach(function(key){
     console.log(key, userList[key].data.name);
-    var element = document.createElement('p');
-    var name = document.createTextNode(userList[key].data.name);
+    let element = document.createElement('p');
+    let name = document.createTextNode(userList[key].data.name);
     element.appendChild(name);
     parent.appendChild(element);
   })
@@ -196,14 +194,14 @@ function displayUserList(){
 }
 
 function clearUserListDisplay(){
-  var parent = document.getElementById("listBeer");
+  let parent = document.getElementById("listBeer");
   parent.innerHTML = "";
 }
 
 function download(filename, text) {
-  var element = document.createElement('a');
-
-  let header = "                             Your List \n---------------------------------------------------------------\n"
+  let element = document.createElement('a');
+  let d = new Date();
+  let header = "Date: "+(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear()+"\nYour List \n"
   let usersList = header+"";
 
   Object.keys(userList).forEach(function(key){
@@ -216,7 +214,6 @@ function download(filename, text) {
 
   element.style.display = 'none';
   document.body.appendChild(element);
-
   element.click();
 
   document.body.removeChild(element);

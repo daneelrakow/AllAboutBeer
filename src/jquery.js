@@ -17,7 +17,7 @@ $(document).ready(function() {
     let dateVal = $("#bdate").val();
     yearVal = $("#byear").val();
 
-    var todaysDate = new Date();
+    let todaysDate = new Date();
 
     let targetYear = todaysDate.getFullYear() - 21;
     let currentMonth = todaysDate.getMonth() + 1;
@@ -85,7 +85,7 @@ $(document).ready(function() {
     $(".alternatehead").hide();
     $(".displaydefault").show()
     $(".alternate").hide();
-    $(this).hide();
+    $("#gobackbutton").hide();
     $("#aboutwebsite").show();
     $("#content").show();
     $("#another").hide();
@@ -109,9 +109,9 @@ $(document).ready(function() {
 
   $("#aboutlink").click(function() {
     $("#content").hide();
-    $("#AboutWebsite").show();
+    $("#aboutwebsite").show();
     $("#gobackbutton").show();
-    $(this).hide();
+    // $(this).hide();
   })
 
   $("#addtolist").click(function() {
