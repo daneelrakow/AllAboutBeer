@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const TEST_VERIFY = true; //SET THIS TO TRUE FOR PRESENTATION
+  const TEST_VERIFY = false; //SET THIS TO TRUE FOR PRESENTATION
   let verified = false;
 
   $(".alternatehead").hide();
@@ -14,7 +14,6 @@ $(document).ready(function() {
     $("#ageverify").show()
   } else {
     $("#ageverify").hide()
-
   }
 
 
