@@ -12,3 +12,5 @@ All About Beer is a website that uses the BreweryDB API to fetch a random beer a
 * jQuery
 * Git, obviously
 * Responsive Design
+
+README Last Updated: 12/5/2019
