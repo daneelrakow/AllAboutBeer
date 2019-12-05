@@ -20,16 +20,16 @@ header {
   color: white;
   padding-top: 15px;
   text-align: center;
-  border-bottom: solid 2px black;
+  border-bottom: solid 6px gray;
   background-color: #4f1515;
 }
 
 footer {
   color: white;
   text-align: center;
-  border-top: solid 2px black;
+  border-top: solid 6px gray;
   background-color: #4f1515;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   /* min-height: 15vh;
   position: absolute;
   bottom: 0;
@@ -103,14 +103,16 @@ a:visited {
   text-align: center;
 }
 
+.centerbutton {
+  align: center;
+}
 
-button {
-/* background-color: #4f1515;
-border: none;
-color: white;
-padding: 10px 10px 10px 10px;
-text-align: center;
-text-decoration: none;
-display: inline-block; */
+#randomadditionalinfo {
+  margin-left: 15vw;
+  margin-right: 15vw;
+}
 
+#randomdescription {
+  margin-left: 15vw;
+  margin-right: 15vw;
 }

@@ -1,16 +1,11 @@
 /*
 TODO Refactor Code
-TODO Change all P "buttons" to actual buttons
-  Go back
-  Another One
-  etc...
 TODO Docuement
-TODO fix age verification
-TODO footer css ask Austin
-TODO implement about website page and go back button
+TODO fix age verification with validation months 1-12 date 1-31
+TODO footer css ask Austin stick to bottom of page!
 TODO readme page
 TODO refactor getRandomBeer and updateRandomBeer into one function
-TODO fix go back button on main page
+
 */
 
 
@@ -20,10 +15,11 @@ const key = config.MY_KEY;
 
 let userList = {} //list of all beers user adds to list
 let theBeer; // global variable which store the current random beer
-
+let previousBeer;
 //This function calls BreweryDB and fetches a random beer.
 
 async function getRandomBeer() {
+  previousBeer = theBeer;
   console.log("getRandomBeer() has been called.")
   let response = await fetch(url + "beer/random" + key)
   let randomBeer = await response.json();
@@ -35,12 +31,12 @@ async function getRandomBeer() {
 //changes the beer to the more advanved api beer request
 async function updateRandomBeer(b) {
   let id = b.data.id
-  console.log("Beer ID: "+id)
+  console.log("Beer ID: " + id)
   let ren = await fetch(url + "beer/" + id + "/" + key)
   let c = await ren.json();
   JSON.stringify(c)
 
-  console.log("Beer name: "+c.data.name);
+  console.log("Beer name: " + c.data.name);
   updateRandomBeerHTML(c);
 }
 
@@ -67,7 +63,9 @@ function updateRandomBeerHTML(beer) {
 
   addToList.innerHTML = "Add to my list";
   anotherButton.innerHTML = "Another One";
-  // backButton.innerHTML = "Go Back";
+  backButton.innerHTML = "Go Back";
+
+  //if s
 
   if (beer.data.name) {
     name.innerHTML = beer.data.name
@@ -85,19 +83,19 @@ function updateRandomBeerHTML(beer) {
   category.innerHTML = "Category: " + beer.data.style.category.name;
   learnMore.innerHTML = "Click here to learn more about this category or style."
 
-  if (!beer.data.foodParings) {
-    foodPairings.innerHTML = "";
-  } else {
+  if (beer.data.foodParings) {
     foodPairings.innerHTML = beer.data.foodParings;
     description.innerHTML = beer.data.description;
+  } else {
+    foodPairings.innerHTML = "";
   }
 
-  //checks if value is null or undefined
-  if (!beer.data.description) {
-    header.innerHTML = "";
-  } else {
+
+  if (beer.data.description) {
     header.innerHTML = "Description"
     description.innerHTML = beer.data.description;
+  } else {
+    header.innerHTML = "";
   }
 
   if (beer.data.isOrganic) {
@@ -149,7 +147,7 @@ function clearRandomInformation() {
   let anotherButton = document.getElementById("another");
   let backButton = document.getElementById("gobackbutton");
   let additionalInfo = document.getElementById("randomadditionalinfo");
-    let addToList = document.getElementById("addtolist");
+  let addToList = document.getElementById("addtolist");
   name.innerHTML = "";
   abv.innerHTML = "";
   style.innerHTML = "";
@@ -171,17 +169,17 @@ function updateAddAdditionalInfo() {
   additionalInfo.innerHTML = theBeer.data.style.description;
 }
 
-function addToList(){
+function addToList() {
   console.log("Adding beer to user list...")
   userList[theBeer.data.id] = theBeer;
   console.log(userList);
-  alert(theBeer.data.name+" was successfully added to your list.")
+  alert(theBeer.data.name + " was successfully added to your list.")
 }
 
-function displayUserList(){
+function displayUserList() {
   let parent = document.getElementById("listBeer");
 
-  Object.keys(userList).forEach(function(key){
+  Object.keys(userList).forEach(function(key) {
     console.log(key, userList[key].data.name);
     let element = document.createElement('p');
     let name = document.createTextNode(userList[key].data.name);
@@ -193,7 +191,7 @@ function displayUserList(){
   backButton.innerHTML = "Go Back"
 }
 
-function clearUserListDisplay(){
+function clearUserListDisplay() {
   let parent = document.getElementById("listBeer");
   parent.innerHTML = "";
 }
@@ -201,12 +199,12 @@ function clearUserListDisplay(){
 function download(filename, text) {
   let element = document.createElement('a');
   let d = new Date();
-  let header = "Date: "+(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear()+"\nYour List \n"
-  let usersList = header+"";
+  let header = "Date: " + (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear() + "\nYour List \n"
+  let usersList = header + "";
 
-  Object.keys(userList).forEach(function(key){
+  Object.keys(userList).forEach(function(key) {
     console.log(key, userList[key].data.name);
-    usersList = usersList+"\n"+(userList[key].data.name);
+    usersList = usersList + "\n" + (userList[key].data.name);
   });
 
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(usersList));
@@ -219,7 +217,7 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-function createAndDownloadFile(){
+function createAndDownloadFile() {
   console.log("createAndDownloadFile() has been called.");
   console.log("Downloading...");
   download("Your_List.txt", "info here");

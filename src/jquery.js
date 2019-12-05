@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  const TEST_VERIFY = true;
-
+  const TEST_VERIFY = true; //SET THIS TO TRUE FOR PRESENTATION
+  let verified = false;
 
   $(".alternatehead").hide();
   $("#gobackbutton").hide();
@@ -10,6 +10,13 @@ $(document).ready(function() {
   $('#content').hide();
   $('#accessdenied').hide();
   $('#userlist').hide();
+  if (!verified) {
+    $("#ageverify").show()
+  } else {
+    $("#ageverify").hide()
+
+  }
+
 
   $("#submitbutton").click(function() {
 
@@ -23,17 +30,22 @@ $(document).ready(function() {
     let currentMonth = todaysDate.getMonth() + 1;
     let currentDay = todaysDate.getDate();
 
-    if (!monthVal || !dateVal || !yearVal){
-      alert("Please fill out all fields to continue.");
+    if (!monthVal || !dateVal || !yearVal) {
+      if (!TEST_VERIFY){
+        alert("Please fill out all fields to continue.");
+        location.reload();
+      }
 
     }
 
     if (yearVal < targetYear || TEST_VERIFY == true) {
       $("#ageverify").hide()
       $("#content").show();
+      verified = true;
     } else if (yearVal == targetYear) {
       if (monthVal <= currentMonth) {
         if (dateVal <= currentDay) {
+          verified = true;
           $("#ageverify").hide()
           $("#content").show();
         } else {
@@ -82,20 +94,29 @@ $(document).ready(function() {
   })
 
   $("#gobackbutton").click(function() {
+    clearRandomInformation();
+    clearUserListDisplay();
     $(".alternatehead").hide();
     $(".displaydefault").show()
     $(".alternate").hide();
-    $("#gobackbutton").hide();
+
     $("#aboutwebsite").show();
-    $("#content").show();
+    if (!verified) {
+      $("#ageverify").show()
+    } else {
+      $("#content").show();
+    }
     $("#another").hide();
-    clearRandomInformation();
-    clearUserListDisplay();
-    $("#gobackbutton").show();
+
+
     $('#aboutwebsite').hide();
     $('#aboutlink').show();
     $("#userlist").hide();
     $('.mainmenu').show();
+    $("#gobackbutton").hide();
+    $(this).hide();
+
+
   })
 
   $("#randomlearnmore").click(function() {
@@ -109,6 +130,7 @@ $(document).ready(function() {
 
   $("#aboutlink").click(function() {
     $("#content").hide();
+    $("#ageverify").hide();
     $("#aboutwebsite").show();
     $("#gobackbutton").show();
     // $(this).hide();
@@ -126,7 +148,5 @@ $(document).ready(function() {
     $("#defaulthead").hide();
 
     displayUserList();
-
   })
-
 });
